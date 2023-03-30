@@ -1,16 +1,14 @@
 import React from "react";
 import './Cart.css'
 const Cart = ({cart}) => {
-    console.log(cart);
     let totalPrice = 0;
     let totalShipping = 0;
+    let quantity=0;
     for (const detail of cart){
-        // console.log(detail.price);
-        const newPrice = detail.price;
-        const newShipping = detail.shipping
-        totalPrice = totalPrice + newPrice;
-        totalShipping = totalShipping + newShipping;
-        // console.log(total);
+        // detail.quantity = detail.quantity || 1;
+        totalPrice = totalPrice + detail.price * 3;
+        totalShipping = totalShipping + detail.shipping;
+        quantity = quantity + detail.quantity;
     }
 
 
@@ -21,11 +19,11 @@ const Cart = ({cart}) => {
   return (
     <div className="cart">
       <h4>Order Summary</h4>
-      <p>Selected Items: {cart.length}</p>
+      <p>Selected Items: {quantity}</p>
       <p>Total Price : {totalPrice}</p>
       <p>Total Shipping : {totalShipping}</p>
       <p>Tax : {tax.toFixed(2)}</p>
-      <h6 style={{'fontSize':'18px'}}>Grand Total : {grandTotal}</h6>
+      <h6 style={{'fontSize':'18px'}}>Grand Total : {grandTotal.toFixed(2)}</h6>
     </div>
   );
 };
